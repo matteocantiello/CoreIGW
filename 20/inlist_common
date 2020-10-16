@@ -1,0 +1,121 @@
+
+
+&star_job
+
+      !create_pre_main_sequence_model = .true.
+
+      !change_lnPgas_flag = .true.
+      !new_lnPgas_flag = .true.
+
+      history_columns_file ='../history_columns.list'
+      profile_columns_file ='../profile_columns.list'
+
+     ! save_model_when_terminate = .true.
+     ! save_model_filename = 'tams.mod'
+
+      pgstar_flag = .true.
+
+
+/ ! end of star_job namelist
+
+&controls
+
+
+      ! MAIN PARAMS
+      mixing_length_alpha = 1.6
+      !initial_mass = 15.0
+      initial_z = 0.02
+
+      ! OUTPUT
+      !photostep = 1000
+      profile_interval = 5
+      history_interval = 1
+      !terminal_cnt = 10
+      !write_header_frequency = 10
+
+      ! WHEN TO STOP
+      ! max_age = 2d10
+      ! xa_central_lower_limit_species(1) = 'h1'
+      ! xa_central_lower_limit(1) = 0.01
+      ! Teff_lower_limit = 9560 ! Vega Temperature (See. Hill et al. 2010 http://iopscience.iop.org/0004-637X/712/1/250/pdf/apj_712_1_250.pdf )
+
+      ! OVERSHOOTING
+      ! overshoot_f_above_burn_h = 0.014
+      ! overshoot controls
+
+      ! we only include a bit of exponential overshooting to smooth things out
+!      overshoot_f0_above_nonburn_core = 0.005
+!      overshoot_f0_above_burn_h_core = 0.005
+!      overshoot_f0_above_burn_he_core = 0.005
+!      overshoot_f0_above_burn_z_core = 0.005
+
+!      overshoot_f_above_nonburn_core = 0.014
+!      overshoot_f_above_burn_h_core = 0.014
+!      overshoot_f_above_burn_he_core = 0.014
+!      overshoot_f_above_burn_z_core = 0.014
+
+!      overshoot_f0_above_nonburn_shell = 0.005
+!      overshoot_f0_above_burn_h_shell = 0.005
+!      overshoot_f0_above_burn_he_shell = 0.005
+!      overshoot_f0_above_burn_z_shell = 0.005
+
+!      overshoot_f_above_nonburn_shell = 0.014
+!      overshoot_f_above_burn_h_shell = 0.014
+!      overshoot_f_above_burn_he_shell = 0.014
+!      overshoot_f_above_burn_z_shell = 0.014
+
+!      overshoot_f0_below_nonburn_shell = 0.005
+!      overshoot_f0_below_burn_h_shell = 0.005
+!      overshoot_f0_below_burn_he_shell = 0.005
+!      overshoot_f0_below_burn_z_shell = 0.005
+
+!      overshoot_f_below_nonburn_shell = 0.014
+!      overshoot_f_below_burn_h_shell = 0.014
+!      overshoot_f_below_burn_he_shell = 0.014
+!      overshoot_f_below_burn_z_shell = 0.014
+
+
+      ! RESOLUTION
+      mesh_delta_coeff = 0.2
+
+      ! Increase resolution around top nb convection zones
+      ! + if center he4 < `xtra_coef_czb_full_on`, then use xtra coef's
+      ! + if center he4 > `xtra_coef_czb_full_off`, then don't use xtra coef's
+
+      xtra_coef_czb_full_on = 1.0
+      xtra_coef_czb_full_off = 1.0 ! Always on
+
+      xtra_coef_a_l_nb_czb = 0.2 ! x5  mesh_delta_coeff
+      xtra_dist_a_l_nb_czb = 0.5d0 ! Around 0.5 Hp of lower convective boundaries of non-burning convective zone
+      xtra_coef_b_l_nb_czb = 0.2
+      xtra_dist_b_l_nb_czb = 0.5d0
+
+      xtra_coef_a_u_nb_czb = 0.2   ! " "  upper " "
+      xtra_dist_a_u_nb_czb = 0.5d0
+      xtra_coef_b_u_nb_czb = 0.2
+      xtra_dist_b_u_nb_czb = 0.5d0
+
+      ! GOLD TOLERANCES
+
+      use_gold_tolerances = .true.
+      delta_lg_XH_cntr_limit = 0.001
+      varcontrol_target = 1d-4
+      min_timestep_limit = 1d-1
+
+     !better resolution of the Henyey hook
+     delta_lg_XH_cntr_max = -2.5
+     !limit on magnitude of relative change at any grid point
+     delta_lgTeff_limit = 0.005
+     delta_lgTeff_hard_limit = 0.005
+     delta_lgL_limit = 0.005
+
+
+
+/ ! end of controls namelist
+
+
+&pgstar
+
+
+
+/ ! end of pgstar namelist

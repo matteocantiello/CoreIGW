@@ -1,0 +1,53 @@
+
+&star_job
+
+
+/ ! end of star_job namelist
+
+&controls
+
+
+      ! MAIN PARAMS
+
+      initial_mass = 3
+
+      xa_central_lower_limit_species(1) = 'h1'
+      xa_central_lower_limit(1) =  0.2 ! 1d-2 
+!      Teff_lower_limit = 12589 ! Stop at LogT~4.1 !9560 ! Vega Temperature (See. Hill et al. 2010 http://iopscience.iop.org/0004-637X/712/1/250/pdf/apj_712_1_250.pdf )
+!      min_timestep_limit = 1
+
+
+     ! EXTRA MIXING (STAR IS MASSIVE, so luminous and likely rotating) It also helps smoothing the Brunt profile
+    set_min_D_mix = .true.
+    mass_lower_limit_for_min_D_mix = 0d0
+    mass_upper_limit_for_min_D_mix = 1d99
+    min_D_mix = 1d3
+
+
+    ! Solver
+    varcontrol_target = 1d-4
+    use_gold_tolerances = .true.
+    ignore_species_in_max_correction = .true.
+    min_timestep_limit = 1d-18
+    gold_newton_iterations_limit = 50
+    delta_lgL_limit = 1d1
+    delta_lgL_phot_limit = 1d1
+    delta_lgTeff_limit = 1d1
+
+
+  ! Mesh
+    mesh_delta_coeff = 0.3
+    max_allowed_nz = 16000
+
+
+
+
+
+/ ! end of controls namelist
+
+
+&pgstar
+
+
+
+/ ! end of pgstar namelist

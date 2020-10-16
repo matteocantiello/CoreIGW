@@ -1,0 +1,34 @@
+
+&star_job
+
+
+/ ! end of star_job namelist
+
+&controls
+
+ 
+      ! MAIN PARAMS
+
+      initial_mass = 40  
+
+!      xa_central_lower_limit_species(1) = 'h1'
+!      xa_central_lower_limit(1) = 1d-3
+       Teff_lower_limit = 12589 ! Stop at LogT~4.1 !9560 ! Vega Temperature (See. Hill et al. 2010 http://iopscience.iop.org/0004-637X/712/1/250/pdf/apj_712_1_250.pdf )
+!      min_timestep_limit = 1    
+
+
+
+   
+      ! RESOLUTION
+      mesh_delta_coeff = 0.6
+
+
+               
+/ ! end of controls namelist
+
+
+&pgstar
+         
+
+
+/ ! end of pgstar namelist
