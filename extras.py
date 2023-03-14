@@ -24,8 +24,6 @@ from matplotlib.patches import Rectangle
 from matplotlib.patches import Polygon
 from matplotlib.collections import PatchCollection
  
-from Constants import Constants
-c=Constants() 
 
 # Define some colors
 BLACK      = (0.00,0.00,0.00)
